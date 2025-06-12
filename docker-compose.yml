@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq-dev
+    hostname: rabbitmq
+    volumes:
+      - ./rabbitmq/etc/:/etc/rabbitmq/
+      - rabbitmq-data:/var/lib/rabbitmq/mnesia/rabbit@rabbitmq
+      - rabbitmq-logs:/var/log/rabbitmq/log
+    ports:
+      - 5672:5672
+      - 15672:15672
+    networks:
+      - backend
+
+volumes:
+  rabbitmq-data:
+  rabbitmq-logs:
+
+networks:
+  backend:
+    name: micro__services_network
+    external: true

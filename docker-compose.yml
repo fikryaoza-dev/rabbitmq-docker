@@ -10,6 +10,9 @@ services:
       RABBITMQ_DEFAULT_USER: "admin"
       RABBITMQ_DEFAULT_PASS: "password"
       RABBITMQ_DEFAULT_VHOST: "/"
+    configs:
+      - source: rabbitmq-plugins
+        target: /etc/rabbitmq/enabled_plugins
     volumes:
       - ./rabbitmq/etc/:/etc/rabbitmq/
       - rabbitmq-data:/var/lib/rabbitmq/mnesia/rabbit@rabbitmq

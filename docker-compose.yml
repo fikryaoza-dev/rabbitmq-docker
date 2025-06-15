@@ -7,27 +7,13 @@ services:
       RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
       RABBITMQ_DEFAULT_USER: "admin"
       RABBITMQ_DEFAULT_PASS: "password"
-      RABBITMQ_DEFAULT_VHOST: "/"
     volumes:
-      - ./rabbitmq/etc/:/etc/rabbitmq/
-      - rabbitmq-data:/var/lib/rabbitmq/mnesia/rabbit@rabbitmq
+      - rabbitmq_data:/var/lib/rabbitmq
       - rabbitmq-logs:/var/log/rabbitmq/log
-      - ./config/definitions.json:/etc/rabbitmq/definitions.json:ro
-      - ./config/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf:ro
     ports:
       - 5672:5672
       - 15672:15672
-    configs:
-      - source: rabbitmq-plugins
-        target: /etc/rabbitmq/enabled_plugins
-    networks:
-      - backend
 
 volumes:
   rabbitmq-data:
   rabbitmq-logs:
-
-networks:
-  backend:
-    name: micro__services_network
-    external: true

@@ -1,6 +1,6 @@
 services:
   rabbitmq:
-    image: rabbitmq:3-management-alpine
+    image: rabbitmq:4.0-management-alpine
     container_name: rabbitmq-dev
     hostname: rabbitmq
     environment:
